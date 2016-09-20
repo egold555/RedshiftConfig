@@ -26,13 +26,13 @@ public class ConfigBase extends OpMode {
     @Override
     public void init() {
         gp = gamepad1;
+        currentVar = 0;
         util.log("Ready to start configuring? Press the start button!");
         util.updateTelemetry();
     }
 
     @Override
     public void start(){
-        currentVar = 0;
         showCurrentVariable();
     }
 

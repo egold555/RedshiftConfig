@@ -19,8 +19,9 @@ public class ExampleOPModeUsingConfig extends OpMode {
 
     Util util = new Util(this);
 
-    static void initMe() //you need this because static { } does not get called in FTC
+    static void initMe() //you need this because static { } does not get called in FTC //CALL CLEAR BEFORE ANYTHING
     {
+        ExampleConfig.config.clearArray();
         ExampleConfig.config.addVariable(test1);
         ExampleConfig.config.addVariable(test2);
     }

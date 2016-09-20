@@ -11,4 +11,8 @@ public class Config {
     public void addVariable(ConfigVariable variable){
         variables.add(variable);
     }
+
+    public void clearArray(){
+        variables.clear();
+    }
 }

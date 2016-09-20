@@ -30,6 +30,11 @@ public class Util {
         updateTelemetry();
     }
 
+    public void writeLine (Object obj){
+        opMode.telemetry.addLine(String.valueOf(obj));
+        updateTelemetry();
+    }
+
     public void clearTelemetry(){
         log("");
         updateTelemetry();
@@ -37,5 +42,9 @@ public class Util {
 
     public void updateTelemetry(){
         opMode.updateTelemetry(opMode.telemetry);
+    }
+
+    public void console(Object obj){
+        System.out.println(obj);
     }
 }
