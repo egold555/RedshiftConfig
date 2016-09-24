@@ -47,4 +47,8 @@ public class Util {
     public void console(Object obj){
         System.out.println(obj);
     }
+
+    public void stopOPMode(){
+        opMode.requestOpModeStop();
+    }
 }

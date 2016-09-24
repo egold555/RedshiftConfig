@@ -3,6 +3,9 @@ package org.redshiftrobotics.config;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
+import java.text.*;
+
+import org.firstinspires.ftc.robotcontroller.internal.FtcRobotControllerActivity;
 import org.redshiftrobotics.util.Util;
 
 /**
@@ -27,7 +30,13 @@ public class ConfigBase extends OpMode {
     public void init() {
         gp = gamepad1;
         currentVar = 0;
-        util.log("Ready to start configuring? Press the start button!");
+        util.log("Ready to start configuring? Press the A button!");
+        util.log("");
+        util.log("Controls:");
+        util.log("  A: Next Page");
+        util.log("  B: Back Page");
+        util.log("  Y: Increment Up");
+        util.log("  X: Increment Down");
         util.updateTelemetry();
     }
 
@@ -71,6 +80,7 @@ public class ConfigBase extends OpMode {
             util.log("Done configuring. Please exit this OPMode.");
             util.updateTelemetry();
             currentVar=max;
+
             return;
         }
 
@@ -138,7 +148,27 @@ public class ConfigBase extends OpMode {
         }
 
         util.log("Variable", config.variables.get(currentVar).name);
-        util.log("Value", config.variables.get(currentVar).getValueDouble());
+        if(config.variables.get(currentVar).type == ConfigType.TYPE_DOUBLE){
+            DecimalFormat df = new DecimalFormat("#.##");
+            util.log("Value", df.format(config.variables.get(currentVar).getValueDouble()));
+
+        }else if(config.variables.get(currentVar).type == ConfigType.TYPE_BOOLEAN){
+
+            util.log("Value", config.variables.get(currentVar).getValueBoolean());
+
+        }else if(config.variables.get(currentVar).type == ConfigType.TYPE_FLOAT){
+            DecimalFormat df = new DecimalFormat("#.##########");
+            util.log("Value", df.format(config.variables.get(currentVar).getValueFloat()));
+
+        }else if(config.variables.get(currentVar).type == ConfigType.TYPE_INT){
+
+            util.log("Value", config.variables.get(currentVar).getValueInt());
+
+        }else{
+            //this shoulden't ever happen
+            util.writeLine("Type error occured in config base. (This should never happen)");
+        }
+        //util.log("Value", config.variables.get(currentVar).getValueDouble());
         util.updateTelemetry();
     }
 

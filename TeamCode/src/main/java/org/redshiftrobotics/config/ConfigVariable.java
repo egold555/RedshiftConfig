@@ -9,6 +9,7 @@ public class ConfigVariable {
     double min;
     double max;
     double increment;
+    protected int type = ConfigType.TYPE_DOUBLE;
 
     public ConfigVariable(String name, double value, double min, double max, double increment){
         this.name = name;
@@ -23,6 +24,11 @@ public class ConfigVariable {
             return true;
         }
         return false;
+    }
+
+    public ConfigVariable setType(int type){
+        this.type = type;
+        return this;
     }
 
     public int getValueInt(){
